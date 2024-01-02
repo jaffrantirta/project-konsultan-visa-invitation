@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" translate="no">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i, berkenan hadir memberikan doa restu kepada kami">
+	<title>Undangan Pawiwahan | Komo & Yunitha</title>		
+	
+	<meta property="og:title" content="Undangan Pawiwahan | Komo & Yunitha">
+    <meta property="og:type" content="Website">
+    <meta property="og:image" content="https://undangandigitalbali.com/tema/8/assets/img/thumb.jpg">
+    <meta property="og:url" content="https://undangandigitalbali.com/tema/8/">
+    <meta property="og:site_name" content="Undangan Digital Bali">
+    <meta property="og:description" content="Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i, berkenan hadir memberikan doa restu kepada kami">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Jost:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap" rel="stylesheet">
+	
+	<link rel="stylesheet" href="https://undangandigitalbali.com/assets/css/bootstrap.min.css">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://undangandigitalbali.com/assets/css/slick.css">
+	<link rel="stylesheet" href="https://undangandigitalbali.com/assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	
+	<!-- Favicons -->
+    <link href="https://undangandigitalbali.com/assets/images/favicon.png" rel="icon">
+    <link href="https://undangandigitalbali.com/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+    
+    <script>
+		function SubForm (){
+		    $("#butsave").attr("disabled", "disabled");
+		    var nama = $('#nama').val();
+    		var hadir = $("input[type='radio'][name='kehadiran']:checked").val();
+    		var ucapan = $("#ucapan").val();
+    		
+    		if(nama!="" && hadir!="" && ucapan!="" ){
+    		    $.ajax({
+				url: "save.php",
+				type: "POST",
+				data: {
+					nama: nama,
+					hadir: hadir,
+					ucapan: ucapan			
+				},
+				cache: false,
+				beforeSend: function(){
+                    $("#showLoading").show();
+                },
+				success: function(dataResult){
+					var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){
+						$("#butsave").removeAttr("disabled");
+						
+						$('#showNotif').html('Ucapan sudah tersampaikan');
+                        $('#rsvp-form')[0].reset();
+                        $('#showNotif').fadeIn('slow');
+                        setTimeout(function() {                        
+                            $('#showNotif').fadeOut('slow');
+                        }, 3000); //  1000 = 1detik						
+					}
+					else if(dataResult.statusCode==201){
+					   alert("Error occured !");
+					}
+					
+				},
+                complete:function(dataResult){
+                        $("#showLoading").hide();
+				},
+				error: function(){
+					alert("There was an error :(")
+				}
+			});
+    		} else {
+    		    $('#showError').html('Harap dilengkapi dulu');
+                $('#showError').fadeIn('slow');
+                setTimeout(function() {                        
+                    $('#showError').fadeOut('slow');
+                }, 2000); //  1000 = 1detik	
+    		}
+    		/**/
+		}
+		
+        function CopyToClipboard(id){
+            var r = document.createRange();
+            r.selectNode(document.getElementById(id));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(r);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            $('#showNotifgift').html('No Rekening Sudah Ter-Copy');
+            $('#showNotifgift').fadeIn('slow');
+            setTimeout(function() {                        
+                $('#showNotifgift').fadeOut('slow');
+            }, 3000); //  1000 = 1detik	
+        }
+        
+        function CopyToClipboard2(id){
+            var r = document.createRange();
+            r.selectNode(document.getElementById(id));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(r);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            $('#showNotifgift2').html('No Rekening Sudah Ter-Copy');
+            $('#showNotifgift2').fadeIn('slow');
+            setTimeout(function() {                        
+                $('#showNotifgift2').fadeOut('slow');
+            }, 3000); //  1000 = 1detik	
+        }
+	</script>
+</head>
+<body>
+	<!-- MUSIC -->
+	<div id="buttonmusic" class="shadow"><ion-icon name='volume-high-outline'></ion-icon></div>
+	<audio id="player">
+		<source src="https://udbdata.com/music/stephen-sanchez-until-i-found-you-piano-version.mp3" type="audio/mpeg">
+	</audio>
+	<!-- MUSIC END -->
+    
+	<!-- HEADER -->
+	<header>
+		<div class="js-hero-slider">
+			<div class="hero hero--slide1 js-hero-slide d-flex align-items-center justify-content-center">
+			</div>
+			<div class="hero hero--slide2 js-hero-slide d-flex align-items-center justify-content-center">
+			</div>
+		</div>
+		<div class="hero-body">
+			<p class="hero_date">The wedding of</p>
+			<h1 class="hero_title">Komo & Yunitha</h1>
+		</div>
+		<div class="hero-tamu">
+			<p class="paragraph-modal">Kepada</p>
+            <p class="paragraph-modal">Bapak/Ibu/Saudara/i</p>
+            <h2 class="modal-penerima">
+                Nama Tamu            </h2>
+			<a href="#intro"class="btn btn-md btn-default btn-modal smoothScroll" id="btn-open">Buka Undangan</a>
+		</div>
+	</header>
+	<!-- HEADER END -->
+
+	<!-- MEMPELAI -->
+	<section class="intro" id="intro">
+		<div class="container">
+			<div class="row">
+			    <div class="col-md-8 offset-md-2 intro-box" data-aos="zoom-out-up">
+				    <div class="intro-box-inner">
+				        <div class="intro-box-grad"></div>
+				        <div class="col-md-12 cmb-1">
+    			            <p class="intro-box-text">We are getting married</p>
+    			            <p class="intro-box-text">31 / 12 / 2023</p>
+				        </div>
+				        <div class="countdown-list js-countdown clearfix col-md-8 offset-md-2 col-lg-8 offset-lg-2" data-date="2023/12/31 09:00">
+            				<div class="counter-list__item">
+            					<div class="counter-box">
+                					<div class="counting js-countdown-days">124</div>
+                					<p>Hari</p>
+            					</div>
+            				</div>
+            				<div class="counter-list__item">
+            				    <div class="counter-box">
+                					<div class="counting js-countdown-hours">20</div>
+                					<p>Jam</p>
+            					</div>
+            				</div>
+            				<div class="counter-list__item">
+            					<div class="counter-box">
+                					<div class="counting js-countdown-minutes">30</div>
+                					<p>Menit</p>
+            					</div>
+            				</div>
+            				<div class="counter-list__item">
+            				    <div class="counter-box">
+            					    <div class="counting js-countdown-seconds">50</div>
+            					    <p>Detik</p>
+        					    </div>
+            				</div>
+            			</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+				    <div class="heading-title-img">
+				        <img src="assets/img/heading-title-img.png" alt="">
+			        </div>
+					<h2 class="text-center heading-title">Om Swastyastu</h2>
+					<p class="cmb-2 paragraph text-center">Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi Wasa/Tuhan Yang Maha Esa kami bermaksud mengundang Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya Pawiwahan (Pernikahan) Putra dan Putri kami.</p>
+				</div>
+			</div>
+			
+			<div class="row">
+
+				<div class="col-sm-6 mempelai">
+					<div class="mempelai-foto" data-aos="fade-up">
+						<img class="frame" src="assets/img/groom.jpg">
+						<div class="frame-1" data-aos="fade-down-left"><img src="assets/img/frame-1.png" alt=""></div>
+						<div class="frame-2" data-aos="fade-up-right"><img src="assets/img/frame-2.png" alt=""></div>
+					</div>
+					<div class="mempelai-panggilan font-script" data-aos="fade-up">Komo</div>
+					<div class="mempelai-nama" data-aos="fade-up">I Komang Surya Dinata</div>
+					<div class="mempelai-detail" data-aos="fade-up"> Putra ketiga dari pasangan </div>
+					<div class="mempelai-ortu" data-aos="fade-up"> Bapak I Nyoman Ratep<br />&<br /> Ibu Ni Ketut Kentel </div>
+					<div class="mempelai-alamat" data-aos="fade-up"> Br.Buahan, Ds. Buahan, Kec. Kintamani, Kab. Bangli, Bali<br/><br/></div>
+				</div>
+
+				<div class="col-sm-6 mempelai">
+					<div class="mempelai-foto" data-aos="fade-up">
+						<img class="frame" src="assets/img/bride.jpg">
+						<div class="frame-1" data-aos="fade-down-left"><img src="assets/img/frame-1.png" alt=""></div>
+						<div class="frame-2" data-aos="fade-up-right"><img src="assets/img/frame-2.png" alt=""></div>
+					</div>
+					<div class="mempelai-panggilan font-script" data-aos="fade-up">Yunitha</div>
+					<div class="mempelai-nama" data-aos="fade-up">Ni Wayan Yunitha</div>
+					<div class="mempelai-detail" data-aos="fade-up"> Putri pertama dari pasangan </div>
+					<div class="mempelai-ortu" data-aos="fade-up"> Bapak I Wayan Riwa Aryasa<br />&<br /> Ibu Ni Luh Kariasih </div>
+					<div class="mempelai-alamat" data-aos="fade-up"> Br. Surakarma, Ds. Kintamani, Kec. Kintamani Kab. Bangli, Bali<br /><br /></div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- INTRO END -->
+
+	<!-- LOKASI -->
+	<section class="location js-section" id="location">
+		<div class="container">
+			<div class="row">
+			    <div class="col-md-12 text-center cmb-5">
+				    <div class="heading-title-img">
+				        <img src="assets/img/heading-title-img.png" alt="" data-aos="fade-up">
+			        </div>
+			        <h2 class="heading-title text-center">Waktu & Tempat</h2>
+			    </div>
+			    <div class="col-md-12 text-center">
+			        <div class="row">
+                        <div class="col-md-6">
+                            <div class="acara" data-aos="fade-up">
+                                <div class="acara-img">
+                                    <img src="assets/img/pawiwahan-img.jpg" alt="">
+                                </div>
+                                <div class="acara-text">
+                                    <h2 class="acara-head">Pawiwahan</h2>
+                					<div class="acara-detail">Minggu, 31 Desember 2023</div>
+                					<div class="acara-detail">09.00 WITA - Selesai</div>
+                					<div class="acara-detail">Bertempat di</div>
+                					<div class="acara-alamat">Ubud, Gianyar, Bali</div>
+                					<div class="col-md-12 text-center">
+            							<a href="https://goo.gl/maps/WmBxNEE43MAkzMRv7" target="_blank">
+            								<br />
+            								<button class="btn btn-md btn-default btn-map"> Map Lokasi Acara </button>
+            							</a>
+                					</div>
+            					</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="acara" data-aos="fade-up">
+                                <div class="acara-img">
+                                    <img src="assets/img/resepsi-img.jpg" alt="">
+                                </div>
+                                <div class="acara-text">
+                                    <h2 class="acara-head">Resepsi</h2>
+                					<div class="acara-detail">Minggu, 31 Desember 2023</div>
+                					<div class="acara-detail">16.00 WITA - Selesai</div>
+                					<div class="acara-detail">Bertempat di</div>
+                					<div class="acara-alamat">Ubud, Gianyar, Bali</div>
+                					<div class="col-md-12 text-center">
+            							<a href="https://goo.gl/maps/WmBxNEE43MAkzMRv7" target="_blank">
+            								<br />
+            								<button class="btn btn-md btn-default btn-map"> Map Lokasi Acara </button>
+            							</a>
+                					</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		        </div>
+		        
+			    <div class="col-md-12 text-center">
+	                <p class="font-italic text-center cmt-3 cmb-2" data-aos="fade-up"> Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/ Ibu/ Saudara/i, berkenan hadir untuk memberikan doa restu.</p>
+					<p class="font-italic text-center" data-aos="fade-up"> Atas kehadiran dan doa restunya kami ucapkan terimakasih </p>
+					<h2 class="section-title text-center penutup" data-aos="fade-up">Om Shanti Shanti Shanti Om</h2>
+					<p class="keluarga cmb-1" data-aos="fade-up">Kami yang berbahagia</p>
+					<p class="keluarga" data-aos="fade-up">Kel. I Nyoman Ratep<br>&<br>Kel. I Wayan Riwa Aryasa </p>
+				</div>
+		    </div>
+		</div>
+	</section>
+	<!-- LOKASI END -->
+	
+	<!-- QUOTE-->
+	<section class="cbg-grey" id="quote">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
+					<h3 class="quote__text font-italic" data-aos="fade-up">Ihaiva stam ma vi yaustam, visvam ayur vyasnutam, kridantau putrair naptrbhih, modamanau sve grhe.<br>
+					(Rg Veda X.85.42)<br><br>
+					Wahai pasangan suami-istri, semoga kalian tetap bersatu dan tidak pernah terpisahkan. Semoga kalian mencapai hidup penuh kebahagiaan, tinggal di rumah yang penuh kegembiraan bersama seluruh keturunanmu.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- QUOTE END -->
+
+	<!-- STORIES -->
+	<section class="stories text-center js-section" id="stories">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+				    <div class="heading-title-img">
+				        <img src="assets/img/heading-title-img.png" alt="" data-aos="fade-up">
+			        </div>
+					<h2 class="heading-title text-center cmb-3">Momen Bahagia</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class=" grid">
+						<div class="grid-sizer"></div>
+						<div class="gutter-sizer"></div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/1.jpg"><img src="assets/img/stories/1.jpg" class="stories__img" alt="story1"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/2.jpg"><img src="assets/img/stories/2.jpg" class="stories__img" alt="story2"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/3.jpg"><img src="assets/img/stories/3.jpg" class="stories__img" alt="story3"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/4.jpg"><img src="assets/img/stories/4.jpg" class="stories__img" alt="story4"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/5.jpg"><img src="assets/img/stories/5.jpg" class="stories__img" alt="story5"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/6.jpg"><img src="assets/img/stories/6.jpg" class="stories__img" alt="story6"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/7.jpg"><img src="assets/img/stories/7.jpg" class="stories__img" alt="story7"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/8.jpg"><img src="assets/img/stories/8.jpg" class="stories__img" alt="story8"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/9.jpg"><img src="assets/img/stories/9.jpg" class="stories__img" alt="story9"/></a>
+						</div>
+						<div class="grid-item">
+						    <a class="story-popup" href="assets/img/stories/10.jpg"><img src="assets/img/stories/10.jpg" class="stories__img" alt="story10"/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- STORIES END -->
+	
+	<!-- VIDEO -->
+	<section class="video text-center js-section" id="video">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+				    <div class="heading-title-img">
+				        <img src="assets/img/heading-title-img.png" alt="" data-aos="fade-up">
+			        </div>
+				    <h2 class="heading-title text-center cmb-5">Cerita Kami</h2>
+                    <div class="col-md-12">
+                        <video width="100%" controls="" id="videonya">
+            		        <source src="https://udbdata.com/video/video.mp4#t=0.1"  type="video/mp4">
+            		        Your browser does not support HTML5 video.
+            		    </video>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!-- VIDEO END -->
+    
+	<!-- UCAPAN -->
+	<section class="text-center js-section" id="rsvp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+                    <div class="ucapan-box" data-aos="zoom-in">
+                        <div class="ucapan-box-text">
+                            <div class="heading-title-img">
+        				        <img src="assets/img/heading-title-img.png" alt="" data-aos="fade-up">
+        			        </div>
+        					<h2 class="heading-title text-center">Mohon Doa Restu</h2>
+        					<p>Kirimkan ucapan dan doa kepada kedua mempelai</p>
+                            <form class="rsvp-form js-form cmt-1" id="rsvp-form" autocomplete="off">
+        			            <div class="d-md-flex justify-content-between">
+        							<div class="col-sm-12">
+        								<div class="rsvp-form-field">
+        								    <label for="nama">Masukan namamu</label>
+        									<input type="text" name="nama" id="nama" required>
+        								</div>
+        								<div class="rsvp-form-field textarea">
+        								    <label for="ucapan">Berikan ucapanmu</label>
+        									<textarea rows="2" name="ucapan" id="ucapan"></textarea>
+        								</div>
+        								<div class="rsvp-form-field">
+                            
+                                            <label>Kamu akan hadir?</label>
+                                            <div class="radio-wrapper">
+                                                <input type="radio" checked="" id="radio-1" name="kehadiran" value="Hadir" class"kehadiran">
+                                                <label for="radio-1">Hadir</label>
+                                                <input type="radio" id="radio-2" name="kehadiran" value="Tidak Hadir" class"kehadiran">
+                                                <label for="radio-2">Tidak Hadir</label>
+                                                <input type="radio" id="radio-3" name="kehadiran" value="Masih Ragu" class"kehadiran">
+                                                <label for="radio-3">Masih Ragu</label>
+                                            </div>
+        								</div>
+        							</div>
+        						</div>
+                        	</form>
+                        	<br>
+                        	<div class="col-md-12">
+                                <div style="display:none" id="showLoading" class="text-danger"><img width="40px" src="assets/img/loading.gif">Mengirim!</div>
+                                <div style="display:none" id="showNotif" class="alert alert-success"></div>
+                                <div style="display:none" id="showError" class="alert alert-danger"></div>
+                            </div>
+                            <button type="submit" class="rsvp-form-submit js-submit" onclick='SubForm()'>Kirim Ucapan</button>
+                            <div class="row" id='kolom-ucapan'>
+                			    <div class='scroll col-md-12'><div class='box_ucapan'><div class='row_ucapan'><div class='ucapan'>Futfv</div><div class='quote'></div><div class='nama'>Rtyyu, <span class='hadir'>Maaf saya berhalangan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Dadyi</div><div class='quote'></div><div class='nama'>Ttyug, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Hehe</div><div class='quote'></div><div class='nama'>Rangga, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Tos</div><div class='quote'></div><div class='nama'>Tes, <span class='hadir'>Maaf saya berhalangan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Slamet turah ganteng, god bless u all🙏😇</div><div class='quote'></div><div class='nama'>Baba, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Rahajeng untu anyar nom </div><div class='quote'></div><div class='nama'>Naya, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>congratsss anommmm👌👌</div><div class='quote'></div><div class='nama'>premaaaaa, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Hbd mbk</div><div class='quote'></div><div class='nama'>Aya, <span class='hadir'>Saya masih ragu</span></div></div><div class='row_ucapan'><div class='ucapan'>fgjkj</div><div class='quote'></div><div class='nama'>teegg, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat ya Tumas.. astungkara kami hadir.. 😘🙏</div><div class='quote'></div><div class='nama'>Susi Dharmayanti , <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat Mepandes domugi Rahayu sareng sami😘🙏🙏</div><div class='quote'></div><div class='nama'>Surya wartini, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Met mepades tugekkkk 23 kucing berlari, gak sabar minta nasi disana</div><div class='quote'></div><div class='nama'>Jack Kenici, <span class='hadir'>Saya masih ragu</span></div></div><div class='row_ucapan'><div class='ucapan'>Ccvjjjfdffp</div><div class='quote'></div><div class='nama'>Tes, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Rahyyu</div><div class='quote'></div><div class='nama'>Yuk ter, <span class='hadir'>Saya masih ragu</span></div></div><div class='row_ucapan'><div class='ucapan'>Ante wi</div><div class='quote'></div><div class='nama'>Pegy putra, <span class='hadir'>Maaf saya berhalangan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Ante wi rahayu</div><div class='quote'></div><div class='nama'>Jik, <span class='hadir'>Maaf saya berhalangan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Hbd</div><div class='quote'></div><div class='nama'>Nyoman kemprag, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat menempuh hidup baru bli
+</div><div class='quote'></div><div class='nama'>Sidayana, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat bli wayan dan istri, semoga langgeng 🙏</div><div class='quote'></div><div class='nama'>Putu, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat menempuh hidup baru</div><div class='quote'></div><div class='nama'>Wahyuni, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat ya</div><div class='quote'></div><div class='nama'>Sinta, <span class='hadir'>Saya akan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat ya, semoga langgeng</div><div class='quote'></div><div class='nama'>Dewi, <span class='hadir'>Maaf saya berhalangan hadir</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat menempuh hidup baru</div><div class='quote'></div><div class='nama'>Diah, <span class='hadir'>Saya masih ragu</span></div></div><div class='row_ucapan'><div class='ucapan'>Selamat semoga langgeng</div><div class='quote'></div><div class='nama'>Ayu, <span class='hadir'>Saya akan hadir</span></div></div></div>                			</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</section>
+	<!-- UCAPAN END -->
+    
+	<!-- AMPLOP -->
+	<section class="amplop text-center js-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+                    <div class="heading-title-img">
+				        <img src="assets/img/heading-title-img.png" alt="" data-aos="fade-up">
+			        </div>
+					<h2 class="heading-title text-center">Amplop Digital</h2>
+    			    <p class="cmb-3" data-aos="fade-up">Doa Restu Anda merupakan karunia yang sangat berarti bagi kami.
+    			    <br><br>Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado cashless melalui transfer.</p>
+                </div>
+    			<div class="col-md-6 offset-md-3">
+                    <button type="button" class="rsvp-form-submit" data-toggle="modal" data-target="#amplopModal" data-aos="fade-up">
+                      Kirim Amplop
+                    </button>
+    			</div>
+            </div>
+		</div>
+	</section>
+	<!-- AMPLOP END -->
+	
+	<!-- MODAL AMPLOP -->
+	<div class="modal modal-amplop fade" id="amplopModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+    			    <p class="modal-title">Silahkan melakukan transfer ke rekening berikut:</p>
+                    
+                    <div class="box-gift" data-aos="fade-up">
+                        <div class="card-title">
+                            <img src="https://undangandigitalbali.com/assets/images/bank/bni.png" class="gift-icon" alt=""/>
+                        </div>
+                        <div class="modal-text">0123456789  
+                        <br>a/n Undangan Digital Bali</b>
+                        </div>
+                        <div style="display:none;" id="showNotifgift" class="alert alert-success"></div>
+                        <a id="copy-rek" style="color: #FFF;" onclick="CopyToClipboard('rek');return false;" class="btn btn-default btn-map">Copy No Rekening</a>
+                        <div class="num-temp" id="rek">0123456789</div>
+                    </div>
+                    
+                    <div class="box-gift" data-aos="fade-up">
+                        <div class="card-title">
+                            <img src="https://undangandigitalbali.com/assets/images/bank/bca.png" class="gift-icon" alt=""/>
+                        </div>
+                        <div class="modal-text">0123456789  
+                        <br>a/n Undangan Digital Bali</b>
+                        </div>
+                        <div style="display:none;" id="showNotifgift2" class="alert alert-success"></div>
+                        <a id="copy-rek2" style="color: #FFF;" onclick="CopyToClipboard2('rek2');return false;" class="btn btn-default btn-map">Copy No Rekening</a>
+                        <div class="num-temp" id="rek2">0123456789 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- MODAL AMPLOP END -->
+
+	<!-- FOOTER -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="text-center">
+    				    <div class="heading-title-img">
+    				        <img src="assets/img/heading-title-img.png" alt="">
+    			        </div>
+						<h2 class="heading-title">Matur Suksma</h2>
+						<ul class="footer__social">
+							<li><a href="https://www.instagram.com/undangandigitalbaliofficial/"><ion-icon name="logo-instagram" class="icon icon--sm icon--black"></ion-icon></a></li>
+							<li><a href="https://www.facebook.com/undangandigitalbali"><ion-icon name="logo-facebook" class="icon icon--sm icon--black"></ion-icon></a></li>
+							<li><a href="https://www.youtube.com/channel/UCiR4mcTwXC9AO3PN-JRuTlQ"><ion-icon name="logo-youtube" class="icon icon--sm icon--black"></ion-icon></a></li>
+							<li><a href="https://wa.me/+6281337052451"><ion-icon name="logo-whatsapp" class="icon icon--sm icon--black"></ion-icon></a></li>
+						</ul>
+						<p class="footer__copy">Undangan Digital Bali</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- FOOTER END -->
+	
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2WM1GQX7QJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2WM1GQX7QJ');
+</script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/smoothscroll.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/bootstrap.min.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/jquery.countdown.min.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/masonry.pkgd.min.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/slick.min.js"></script>
+<script src="https://undangandigitalbali.com/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>
