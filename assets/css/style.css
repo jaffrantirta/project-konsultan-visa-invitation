@@ -301,8 +301,19 @@ header {
   background-image: url("../img/hero2.jpg");
 }
 
+/* .hero--slide3 {
+  background-image: url("../img/hero3.jpg");
+} */
+
 .hero--slide3 {
   background-image: url("../img/hero3.jpg");
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 767px) {
+  .hero--slide3 {
+    background-image: url("../img/hero3-mobile.jpg");
+  }
 }
 
 .hero-body {
