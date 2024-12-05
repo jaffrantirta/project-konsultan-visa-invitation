@@ -293,35 +293,40 @@ header {
   height: 100vh;
 }
 
+/* desktop */
 .hero--slide1 {
   background-image: url("../img/hero1-desktop.jpg");
 }
 
-/* Media query for mobile devices */
-@media only screen and (max-width: 767px) {
-  .hero--slide1 {
-    background-image: url("../img/hero1.jpg");
-  }
-}
-
 .hero--slide2 {
-  background-image: url("../img/hero2.jpg");
+  background-image: url("../img/hero2-desktop.jpg");
 }
-
-/* .hero--slide3 {
-  background-image: url("../img/hero3.jpg");
-} */
 
 .hero--slide3 {
-  background-image: url("../img/hero3.jpg");
+  background-image: url("../img/hero3-desktop.jpg");
 }
 
-/* Media query for mobile devices */
+/* mobile */
 @media only screen and (max-width: 767px) {
+  .hero--slide1 {
+    background-image: url("../img/hero1-mobile.jpg");
+  }
+
+  .hero--slide2 {
+    background-image: url("../img/hero2-mobile.jpg");
+  }
+
   .hero--slide3 {
     background-image: url("../img/hero3-mobile.jpg");
   }
 }
+
+/* Media query for mobile devices */
+/* @media only screen and (max-width: 767px) {
+  .hero--slide3 {
+    background-image: url("../img/hero3-mobile.jpg");
+  }
+} */
 
 .hero-body {
   width: 100%;
