@@ -38,30 +38,17 @@
     <!-- Favicons -->
     <link href="/assets/images/favicon.png" rel="icon" />
     <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" />
-
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const contentElement = document.getElementById("content");
-        if (contentElement) {
-          contentElement.innerHTML = `
-            <p>
-              Dengan perantara surat ini kami mengundang Bapak/Ibu manajemen perwakilan sejumlah 2 orang untuk menghadiri <strong>Konsultan Visa’s Partnership Gathering Event and Overseas Career Expo 2025</strong> yang akan kami laksanakan pada:
-            </p>
-            <ul>
-              <li><strong>Hari, Tanggal:</strong> Sabtu, 11 Januari 2025</li>
-              <li><strong>Waktu:</strong> 08:00 – 13:00 WITA</li>
-              <li><strong>Tempat:</strong> Ballroom HARRIS Hotel & Residence Riverview Kuta (Jl. Raya Kuta No.62A, Kuta, Badung, Bali)</li>
-            </ul>
-            <p>
-              Kegiatan “Partnership Gathering” merupakan event tahunan Konsultan Visa dimana tahun ini akan digabung dengan acara “Overseas Career Expo” dengan tujuan mengadakan rekrutmen bagi siswa yang berkeinginan untuk Go Overseas. Adapun main event acara ini adalah untuk memaparkan pencapaian Konsultan Visa selama tahun 2024, berbagi informasi mengenai program-program Internship serta akan disediakan stand booth dari berbagai program dan negara.
-            </p>
-            <p>
-              Sehubungan dengan hal tersebut serta untuk menindaklanjuti surat undangan ini, kami mohon konfirmasi kehadiran Bapak/Ibu kepada kami paling lambat pada hari Senin, 23 Desember 2024 dengan menghubungi salah satu dari kami melalui Whatsapp (WA) dibawah.
-            </p>
-            <ul>
-              <li><strong>Contact Person:</strong> Dewa: 081338441127 atau Putri: 089647486746</li>
-            </ul>
-          `;
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get("to");
+
+        if (guestName) {
+          const modalGuestNameElement =
+            document.getElementById("modal-guest-name");
+          if (modalGuestNameElement) {
+            modalGuestNameElement.textContent = guestName;
+          }
         }
       });
     </script>
@@ -396,10 +383,11 @@
                 width="100%"
                 height="100%"
                 style="aspect-ratio: 16/9; border-radius: 2em"
-                src="https://www.youtube.com/embed/snalSGLffUg?si=abP5TUEe8HWprIw1&amp;controls=0"
-                title="Konsultan Visa"
+                src="https://www.youtube.com/embed/5Cz_J-Ho1Hk?si=WazxA6sto6PgJw6u&amp;controls=0&amp;start=6"
+                title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
               ></iframe>
             </div>
