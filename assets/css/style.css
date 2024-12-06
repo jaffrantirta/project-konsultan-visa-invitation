@@ -1,12 +1,4 @@
 /* UMUM */
-@font-face {
-  font-family: "Galantis";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Galantis"),
-    url("https://undangandigitalbali.com/assets/fonts/Galantis.woff")
-      format("woff");
-}
 
 *:focus {
   outline: none !important;
